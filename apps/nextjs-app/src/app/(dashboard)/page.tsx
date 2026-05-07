@@ -3,11 +3,10 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "#/app/link";
 
-export const metadata: Metadata = { title: "Welcome to Next.js App" };
+export const metadata: Metadata = { title: "Dashboard | Zero One Group" };
 
 const navItems = [
 	{ name: "Dashboard", href: "/" },
-	{ name: "404", href: "/404" },
 	{ name: "Sign In", href: "/login" },
 ];
 
@@ -17,44 +16,43 @@ const cards = [
 		description:
 			"Launch your next project in minutes with our battle-tested monorepo template and development tools.",
 		href: "https://github.com/zero-one-group/monorepo",
+		icon: <Lucide.Rocket className="size-6 text-[#1a7a7a]" />,
 	},
 	{
 		title: "Master Next.js",
 		description:
 			"Build a full-stack app with Next.js, TypeScript, Tailwind CSS, and more.",
 		href: "https://nextjs.org/docs",
+		icon: <Lucide.BookOpen className="size-6 text-[#1a7a7a]" />,
 	},
 	{
 		title: "Star Our Repository",
 		description:
 			"Support our work by starring our GitHub repository and stay updated with latest features.",
 		href: "https://github.com/zero-one-group/monorepo",
+		icon: <Lucide.Star className="size-6 text-[#1a7a7a]" />,
 	},
 ];
 
 export default function Page() {
 	return (
-		<div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-			{/* Navbar */}
-			<nav className="bg-white shadow-sm dark:bg-gray-800">
+		<div className="min-h-screen bg-gray-50">
+			<nav className="bg-white shadow-sm">
 				<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-					<div className="flex h-16 justify-between">
-						<div className="flex items-center">
-							<Image
-								src="/next.svg"
-								className="block h-8 w-auto dark:invert"
-								alt="Next.js logo"
-								width={180}
-								height={38}
-								priority
-							/>
-						</div>
-						<div className="flex items-center gap-4">
+					<div className="flex h-16 items-center justify-between">
+						<Image
+							src="/zog-logo.svg"
+							alt="Zero One Group"
+							width={120}
+							height={40}
+							priority
+						/>
+						<div className="flex items-center gap-6">
 							{navItems.map((item) => (
 								<Link
 									key={item.name}
 									href={item.href}
-									className="text-gray-700 hover:text-gray-900 dark:text-gray-200 dark:hover:text-white"
+									className="text-sm font-medium text-gray-600 hover:text-gray-900"
 								>
 									{item.name}
 								</Link>
@@ -64,27 +62,34 @@ export default function Page() {
 				</div>
 			</nav>
 
-			{/* Main Content */}
+			<div className="bg-[#1a7a7a] py-16 text-white">
+				<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+					<h1 className="text-4xl font-bold">Welcome to Zero One Group</h1>
+					<p className="mt-3 text-white/80">
+						Your Trusted Digital Transformation Partner
+					</p>
+				</div>
+			</div>
+
 			<main className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
 				<div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
 					{cards.map((card) => (
 						<div
 							key={card.title}
-							className="rounded-lg bg-white p-6 shadow dark:bg-gray-800"
+							className="rounded-xl bg-white p-6 shadow-sm border border-gray-100"
 						>
-							<h3 className="font-medium text-gray-900 text-lg dark:text-white">
+							<div className="mb-4">{card.icon}</div>
+							<h3 className="font-semibold text-gray-900 text-lg">
 								{card.title}
 							</h3>
-							<p className="mt-2 text-gray-600 dark:text-gray-300">
-								{card.description}
-							</p>
+							<p className="mt-2 text-sm text-gray-500">{card.description}</p>
 							<Link
 								href={card.href}
-								className="mt-4 inline-flex items-center text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
+								className="mt-4 inline-flex items-center text-sm text-[#1a7a7a] font-medium hover:underline"
 								newTab
 							>
 								<span>Learn more</span>
-								<Lucide.ChevronsRight className="ml-1 size-5" />
+								<Lucide.ChevronsRight className="ml-1 size-4" />
 							</Link>
 						</div>
 					))}
