@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as Lucide from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { type Resolver, useForm } from "react-hook-form";
 import { z } from "zod";
 
 const loginSchema = z.object({
@@ -23,12 +23,14 @@ export function LoginForm() {
 	const [serverError, setServerError] = useState<string | null>(null);
 	const [showPassword, setShowPassword] = useState(false);
 
+	const resolver: Resolver<LoginValues> = zodResolver(loginSchema);
+
 	const {
 		register,
 		handleSubmit,
 		formState: { errors, isSubmitting },
 	} = useForm<LoginValues>({
-		resolver: zodResolver(loginSchema),
+		resolver,
 		defaultValues: { email: "", password: "", rememberMe: false },
 	});
 
