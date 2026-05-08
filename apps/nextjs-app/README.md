@@ -22,6 +22,28 @@ The login page features a split-panel layout matching the wireframe:
 
 Post-login dashboard with Zero One Group branding, navigation, and feature cards.
 
+### Features
+
+**Authentication**
+- Login with email & password via DummyJSON mock API
+- Client-side validation — required fields, email format check
+- Inline error messages per field
+- Server error handling (API failure, network error)
+- Token stored in `localStorage` (Remember Me on) or `sessionStorage` (Remember Me off)
+- Redirect to dashboard on successful login
+
+**Form UX**
+- Password show/hide toggle
+- Submit button disabled + loading spinner while submitting
+- "Continue with Google" button (UI prototype)
+- "Forgot Password?" and "Create an account" links
+
+**Design**
+- Split-panel layout matching the wireframe (60% hero / 40% form)
+- Responsive — hero panel hidden on mobile, form full-width
+- Zero One Group brand colors (`#1a7a7a`)
+- Custom ZOG logo
+
 ---
 
 ## Requirements Checklist
