@@ -27,14 +27,12 @@ export function LoginForm() {
 	const [serverError, setServerError] = useState<string | null>(null);
 	const [showPassword, setShowPassword] = useState(false);
 
-	const resolver: Resolver<LoginValues> = zodResolver(loginSchema);
-
 	const {
 		register,
 		handleSubmit,
 		formState: { errors, isSubmitting },
 	} = useForm<LoginValues>({
-		resolver,
+		resolver: zodResolver(loginSchema) as unknown as Resolver<LoginValues>,
 		defaultValues: { email: "", password: "", rememberMe: false },
 	});
 
