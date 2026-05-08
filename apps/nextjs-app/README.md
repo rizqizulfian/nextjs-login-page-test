@@ -1,38 +1,78 @@
 # Zero One Group — Frontend Skill Test
 
-A login page prototype built with Next.js, TypeScript, React Hook Form, and Tailwind CSS as part of the Zero One Group frontend skill test.
+> Login page prototype built with Next.js, TypeScript, React Hook Form, and Tailwind CSS.
+
+---
+
+## Live Demo
+
+| Page | URL |
+|------|-----|
+| Dashboard | https://nextjs-login-page-test.vercel.app/ |
+| Login | https://nextjs-login-page-test.vercel.app/login |
+
+### Login Page
+
+The login page features a split-panel layout matching the wireframe:
+
+- **Left panel** — Dark teal hero section with branding headline and testimonial
+- **Right panel** — Clean login form with Zero One Group logo, Google OAuth button, email/password fields, remember me, and forgot password
+
+### Dashboard Page
+
+Post-login dashboard with Zero One Group branding, navigation, and feature cards.
+
+---
+
+## Requirements Checklist
+
+### Core Requirements
+
+| Requirement | Status | Implementation |
+|---|---|---|
+| TypeScript + React 18+ | ✅ | React 19 + TypeScript via Next.js 16 |
+| Next.js / Vite / Remix | ✅ | Next.js 16 with App Router |
+| Tailwind CSS / UI Library | ✅ | Tailwind CSS v4 |
+| React Hooks & State Management | ✅ | `useState` (server error, password toggle), `useForm` (RHF), `useRouter` |
+| Third-party React library | ✅ | React Hook Form + Zod + @hookform/resolvers |
+| AI usage in PROMPTS.md | ✅ | See [PROMPTS.md](./PROMPTS.md) |
+| Monorepo template | ✅ | Built on [zero-one-group/monorepo](https://github.com/zero-one-group/monorepo) |
+| Mock authentication | ✅ | [DummyJSON](https://dummyjson.com/docs/auth) — `POST /auth/login` |
+
+### Bonus Points
+
+| Bonus | Status | Implementation |
+|---|---|---|
+| Responsive / mobile friendly | ✅ | Hero panel hidden on mobile (`hidden lg:flex`), form full-width on all screens |
+| Deploy to hosting platform | ✅ | Deployed to [Vercel](https://nextjs-login-page-test.vercel.app) |
+| Unit tests | ✅ | 8 test cases with Vitest + @testing-library/react |
+| E2E tests | ✅ | 7 test cases with Playwright |
+| CI pipeline | ✅ | GitHub Actions — lint, typecheck, unit tests, build |
+| Clear README | ✅ | This document |
+
+---
 
 ## Tech Stack
 
 - **Framework:** Next.js 16 (App Router)
 - **Language:** TypeScript
 - **Styling:** Tailwind CSS v4
-- **Form Management:** React Hook Form + Zod
-- **Mock Auth API:** [DummyJSON](https://dummyjson.com)
+- **Form:** React Hook Form + Zod
+- **Mock Auth:** DummyJSON
 - **Unit Tests:** Vitest + @testing-library/react
 - **E2E Tests:** Playwright
 - **CI:** GitHub Actions
 
-## Features
+---
 
-- Split-panel login layout (hero + form) matching the wireframe
-- Client-side form validation with Zod schema
-- Password visibility toggle
-- "Remember Me" support (localStorage vs sessionStorage)
-- Google OAuth button (UI prototype)
-- Responsive design (hero panel hidden on mobile)
-- Accessible form with proper ARIA labels
+## Getting Started
 
-## Demo Credentials
-
-The app uses [DummyJSON](https://dummyjson.com/docs/auth) as a mock auth provider. Any valid email format and any password will trigger a successful login.
-
-## Prerequisites
+### Prerequisites
 
 - Node.js 22+
 - pnpm 10+
 
-## Getting Started
+### Installation
 
 ```bash
 # Clone the repository
@@ -47,8 +87,10 @@ cd apps/nextjs-app
 pnpm dev
 ```
 
-The app runs at [http://localhost:3000](http://localhost:3000).  
-Navigate to [http://localhost:3000/login](http://localhost:3000/login) to see the login page.
+App runs at [http://localhost:3000](http://localhost:3000).  
+Login page at [http://localhost:3000/login](http://localhost:3000/login).
+
+---
 
 ## Running Tests
 
@@ -57,14 +99,9 @@ Navigate to [http://localhost:3000/login](http://localhost:3000/login) to see th
 ```bash
 cd apps/nextjs-app
 
-# Run all unit tests
-pnpm test
-
-# Run with coverage report
-pnpm test-coverage
-
-# Interactive UI mode
-pnpm test-ui
+pnpm test              # run all tests
+pnpm test-coverage     # run with coverage report
+pnpm test-ui           # interactive UI mode
 ```
 
 ### E2E Tests
@@ -72,33 +109,23 @@ pnpm test-ui
 ```bash
 cd apps/nextjs-app
 
-# Install browsers (first time only)
-pnpm e2e-install
-
-# Run all E2E tests
-pnpm e2e
-
-# Run on specific browser
-pnpm e2e-chrome
-pnpm e2e-firefox
-pnpm e2e-mobile
+pnpm e2e-install       # install browsers (first time only)
+pnpm e2e               # run all E2E tests
+pnpm e2e-chrome        # run on Chrome
+pnpm e2e-mobile        # run on Mobile Chrome
 ```
 
-## Building for Production
+---
 
-```bash
-cd apps/nextjs-app
-pnpm build
-pnpm start
-```
+## CI Pipeline
 
-## Deployment (Vercel)
+GitHub Actions workflow runs on every push/PR to `main` that touches `apps/nextjs-app/**`:
 
-1. Push the repo to GitHub
-2. Import the project in [Vercel](https://vercel.com)
-3. Set **Root Directory** to `apps/nextjs-app`
-4. Set **Framework Preset** to Next.js
-5. Deploy
+1. **Lint & Type Check** — `pnpm typecheck` + `pnpm lint`
+2. **Unit Tests** — `pnpm test-coverage` (uploads coverage artifact)
+3. **Build** — `pnpm build` (runs only after lint + tests pass)
+
+---
 
 ## Project Structure
 
@@ -110,29 +137,33 @@ apps/nextjs-app/
 │   └── app/
 │       ├── (auth)/
 │       │   └── login/
-│       │       ├── page.tsx      # Login page layout (split panel)
-│       │       └── form.tsx      # LoginForm component (RHF + Zod)
+│       │       ├── page.tsx      # Login page — split panel layout
+│       │       └── form.tsx      # LoginForm — React Hook Form + Zod
 │       ├── (dashboard)/
 │       │   └── page.tsx          # Dashboard page (post-login)
 │       ├── layout.tsx
 │       └── link.tsx
 ├── tests/
 │   └── pages/
-│       └── login.test.tsx        # LoginForm unit tests (Vitest)
+│       └── login.test.tsx        # 8 unit tests (Vitest)
 ├── tests-e2e/
-│   └── login.test.ts             # Login page E2E tests (Playwright)
+│   └── login.test.ts             # 7 E2E tests (Playwright)
 ├── PROMPTS.md                    # AI usage documentation
+├── vercel.json                   # Vercel deployment config
 └── package.json
 ```
 
-## CI Pipeline
+---
 
-The GitHub Actions workflow (`.github/workflows/ci.yml`) runs on every push/PR to `main`:
+## Deployment
 
-1. **Lint & Type Check** — `pnpm typecheck` + `pnpm lint`
-2. **Unit Tests** — `pnpm test-coverage` (uploads coverage artifact)
-3. **Build** — `pnpm build` (only runs after lint + tests pass)
+Deployed on [Vercel](https://vercel.com). To redeploy:
+
+1. Push to `main` branch — Vercel auto-deploys via GitHub integration
+2. Or manually via Vercel dashboard → **Redeploy**
+
+---
 
 ## AI Usage
 
-See [PROMPTS.md](./PROMPTS.md) for detailed documentation on how AI was used in this project.
+See [PROMPTS.md](./PROMPTS.md) for full documentation on how AI was used in this project.
