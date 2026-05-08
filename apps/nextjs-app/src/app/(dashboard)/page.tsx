@@ -1,5 +1,6 @@
 import * as Lucide from "lucide-react";
 import type { Metadata } from "next";
+import type { LucideIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "#/app/link";
 
@@ -10,27 +11,34 @@ const navItems = [
 	{ name: "Sign In", href: "/login" },
 ];
 
-const cards = [
+type Card = {
+	title: string;
+	description: string;
+	href: string;
+	Icon: LucideIcon;
+};
+
+const cards: Card[] = [
 	{
 		title: "Zero One Starter Kit",
 		description:
 			"Launch your next project in minutes with our battle-tested monorepo template and development tools.",
 		href: "https://github.com/zero-one-group/monorepo",
-		icon: <Lucide.Rocket className="size-6 text-[#1a7a7a]" />,
+		Icon: Lucide.Rocket,
 	},
 	{
 		title: "Master Next.js",
 		description:
 			"Build a full-stack app with Next.js, TypeScript, Tailwind CSS, and more.",
 		href: "https://nextjs.org/docs",
-		icon: <Lucide.BookOpen className="size-6 text-[#1a7a7a]" />,
+		Icon: Lucide.BookOpen,
 	},
 	{
 		title: "Star Our Repository",
 		description:
 			"Support our work by starring our GitHub repository and stay updated with latest features.",
 		href: "https://github.com/zero-one-group/monorepo",
-		icon: <Lucide.Star className="size-6 text-[#1a7a7a]" />,
+		Icon: Lucide.Star,
 	},
 ];
 
@@ -73,18 +81,18 @@ export default function Page() {
 
 			<main className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
 				<div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-					{cards.map((card) => (
+					{cards.map(({ title, description, href, Icon }) => (
 						<div
-							key={card.title}
+							key={title}
 							className="rounded-xl bg-white p-6 shadow-sm border border-gray-100"
 						>
-							<div className="mb-4">{card.icon}</div>
-							<h3 className="font-semibold text-gray-900 text-lg">
-								{card.title}
-							</h3>
-							<p className="mt-2 text-sm text-gray-500">{card.description}</p>
+							<div className="mb-4">
+								<Icon className="size-6 text-[#1a7a7a]" />
+							</div>
+							<h3 className="font-semibold text-gray-900 text-lg">{title}</h3>
+							<p className="mt-2 text-sm text-gray-500">{description}</p>
 							<Link
-								href={card.href}
+								href={href}
 								className="mt-4 inline-flex items-center text-sm text-[#1a7a7a] font-medium hover:underline"
 								newTab
 							>
