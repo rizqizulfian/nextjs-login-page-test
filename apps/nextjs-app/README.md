@@ -112,6 +112,15 @@ pnpm dev
 App runs at [http://localhost:3000](http://localhost:3000).  
 Login page at [http://localhost:3000/login](http://localhost:3000/login).
 
+### Demo Credentials
+
+| Field | Value |
+|-------|-------|
+| Email | `demo@example.com` |
+| Password | `password123` |
+
+> Any valid email format and any password will work — authentication is handled by [DummyJSON](https://dummyjson.com/docs/auth) mock API.
+
 ---
 
 ## Running Tests

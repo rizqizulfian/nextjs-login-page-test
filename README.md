@@ -12,6 +12,15 @@
 | Dashboard | https://nextjs-login-page-test.vercel.app/ |
 | Login | https://nextjs-login-page-test.vercel.app/login |
 
+### Demo Credentials
+
+| Field | Value |
+|-------|-------|
+| Email | `demo@example.com` |
+| Password | `password123` |
+
+> Any valid email format and any password will work — authentication is handled by [DummyJSON](https://dummyjson.com/docs/auth) mock API.
+
 ### Login Page
 
 The login page features a split-panel layout matching the wireframe:
