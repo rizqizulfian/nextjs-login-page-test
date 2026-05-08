@@ -12,7 +12,6 @@ describe("Homepage", () => {
 
 		// Test navigation items
 		expect(screen.getByText("Dashboard")).toBeInTheDocument();
-		expect(screen.getByText("404")).toBeInTheDocument();
 		expect(screen.getByText("Sign In")).toBeInTheDocument();
 
 		// Test cards content

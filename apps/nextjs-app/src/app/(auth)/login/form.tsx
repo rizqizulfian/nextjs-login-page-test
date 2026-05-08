@@ -16,7 +16,11 @@ const loginSchema = z.object({
 	rememberMe: z.boolean().optional(),
 });
 
-type LoginValues = z.infer<typeof loginSchema>;
+type LoginValues = {
+	email: string;
+	password: string;
+	rememberMe?: boolean | undefined;
+};
 
 export function LoginForm() {
 	const router = useRouter();
